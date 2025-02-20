@@ -1,6 +1,10 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Changelog para el back-end del proyecto
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+0.1.3 (2025-02-20)
+------------------
+* Agregar .bat para despliegue de servicio FastAPI.
+* Autor: Enzo Cisneros.
 0.1.2 (2025-02-20)
 ------------------
 * Prueba de api con una función con FastAPI.
