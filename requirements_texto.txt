@@ -1,0 +1,4 @@
+# Convertir números a palabras
+num2words==0.5.13
+# NLP
+nltk==3.8.1

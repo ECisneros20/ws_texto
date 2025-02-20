@@ -11,6 +11,7 @@ from utils import Constantes, setup_logging
 setup_logging()
 # Obtiene un logger para este módulo
 logger = logging.getLogger(__name__)
+logger.setLevel("INFO")
 # Cargar .env
 load_dotenv()
 
