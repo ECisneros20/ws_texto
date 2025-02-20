@@ -1,6 +1,10 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Changelog para el back-end del proyecto
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+0.1.2 (2025-02-20)
+------------------
+* Prueba de api con una función con FastAPI.
+* Autor: Enzo Cisneros.
 0.1.1 (2025-02-20)
 ------------------
 * Setup microservicio.

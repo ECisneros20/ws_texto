@@ -4,14 +4,17 @@ import re
 import string
 import sys
 from collections.abc import Iterable
+from io import StringIO
 
 import networkx as nx
 import numpy as np
 import pandas as pd
+from fastapi import APIRouter, HTTPException, status
 from nltk.cluster.util import cosine_distance
 from nltk.corpus import stopwords
 from num2words import num2words
 
+# from pydantic import Field
 from constantes_texto import ConstantesTexto
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
@@ -22,6 +25,32 @@ setup_logging()
 # Obtiene un logger para este módulo
 logger = logging.getLogger(__name__)
 logger.setLevel("INFO")
+
+router = APIRouter()
+
+
+@router.post("/df2str", status_code=status.HTTP_200_OK)
+async def convertir_df_a_str(df: str, nombre_columna: str) -> str:
+    # Intenta convertir el df a str
+    try:
+        df = pd.read_json(StringIO(df))
+        if nombre_columna not in df.columns:
+            mensaje = "El nombre de la columna no se encuentra en el df"
+            logger.exception(mensaje)
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=mensaje)
+        df.fillna("", inplace=True)
+        texto = " ".join(df[nombre_columna].astype(str).to_list())
+        texto = texto.strip()
+        return texto
+    except Exception as e:
+        mensaje = f"No se convirtió el df a str, problema imprevisto: {e}"
+        logger.exception(mensaje)
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=mensaje)
+
+
+@router.post("/reemplazar_patron", status_code=status.HTTP_200_OK)
+async def reemplazar_patron():
+    pass
 
 
 class Texto:
